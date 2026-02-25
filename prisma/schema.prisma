@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PRISMA_DATABASE_URL")
+  directUrl = env("POSTGRES_URL")
+}
+
+model User {
+  id               String   @id @unique // Matches Clerk's User ID
+  email            String   @unique
+  name             String?
+  isPro            Boolean  @default(false)
+  stripeCustomerId String?  @unique
+
+  currentRole      String?
+  desiredRole      String?
+  
+  goals            Goal[] 
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Goal {
+  id        String   @id @default(cuid())
+  name      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  resources Json[]   // Stores the saved study materials
+  
+  createdAt DateTime @default(now())
+}
+
+// NEW: Caching table for AI Search Results
+model SearchCache {
+  id        String   @id @default(cuid())
+  query     String   @unique // We'll make this lowercase so "AWS" and "aws" hit the same cache
+  results   Json     // Stores the Gemini output array
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
