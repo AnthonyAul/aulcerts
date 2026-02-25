@@ -25,7 +25,21 @@ Discord Bot Integration: A private Discord bot that Pro members can invite to th
 
 AI Practice Exam Generator: Instead of just searching for links, the AI generates a customized 10-question multiple-choice quiz based on the specific exam domain the user is currently studying.
 
-Gamified Milestones: Turn studying into a satisfying grind, similar to leveling up or gathering resources in games like Minecraft. As they log study hours or pass practice quizzes, they unlock badges or visual shield upgrades on their dashboard. ##
+Gamified Milestones: Turn studying into a satisfying grind, similar to leveling up or gathering resources in games like Minecraft. As they log study hours or pass practice quizzes, they unlock badges or visual shield upgrades on their dashboard.
+
+## 3rd party applications used ##
+
+Nodejs version: 15.5.12
+
+Vercel (deployment for site/nodejs/prisma(postgreSQL))
+
+Stripe (external payment link and customer mgmt)
+
+Clerk (oauth for credentials and linked to prisma database) 
+
+Google Gemini (gemini-3-flash-preview model for ai chat bot & search engine scraper)
+
+Barrion.io (Used for website security assessment report)
 
 
 ## Other Projects / Links ##
